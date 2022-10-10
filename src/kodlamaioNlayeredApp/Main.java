@@ -26,17 +26,21 @@ public class Main {
         category1.setCategoryId(1);
         category1.setCategoryName("C#");
         category1.setCategoryDescription("C# temel düzey ve orta düzey eğitim");
+
         Course course1 = new Course();
         course1.setCourseId(1);
         course1.setCourseName("Java Eğitim 100 Örnekli");
         course1.setCourseInstructor(instructor1);
         course1.setCoursePrice(-6);
+
         System.out.println("----------------- CATEGORY ADDED HIBERNATE----------------");
         CategoryManager categoryManager = new CategoryManager(new hibernateCategoryDao(),new Logger[]{new MailLogger(),new smsLogger()});
         categoryManager.add(category1);
         System.out.println("-----------------COURSE ADDED JDBC----------------");
+
         CourseManager courseManager = new CourseManager(new jdbcCourseDao(), new Logger[]{ new smsLogger(),new MailLogger(), new dbLogger()});
         courseManager.add(course1);
+
         System.out.println("-----------------INSTRUCTOR NOT ADDED HIBERNATE----------------");
         InstructorManager instructorManager = new InstructorManager(new hibernateInstructorDao(), new Logger[]{ new smsLogger(),new MailLogger(), new dbLogger()});
         instructorManager.add(instructor1);
